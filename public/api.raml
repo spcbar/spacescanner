@@ -1,0 +1,70 @@
+#%RAML 1.0
+---
+title: Spacescanner API
+baseUri: http://spacescanner.hurma.tv/api/
+version: v1
+
+/satellites:
+  get:
+    description: returns a full list of satellites which will be really visible in the sky in the near future, with the exact time, for the GEO position provided!
+    queryParameters:
+      utc_time:
+        required: true
+        type: datetime-only
+        description: current local time of the client in UTC
+        example: 2019-02-28T22:26:26
+      lat:
+        required: false
+        type: number
+        description: current latitude of the client, optinal. If not provided, will be derived from IP address.
+        example: -39.86493451
+      long:
+        required: false
+        type: number
+        description: current longitude of the client, optional. If not provided, will be derived from IP address.
+        example: 158.35261287
+      api_key:
+        required: false
+        type: string
+        description: API key from Spacescanner's internal data provider n2yo.com.
+        It is required if and only if there is no data in cache for provided GEO location. Usually, data is in cache.
+        example: 589P8Q-SDRYX8-L842ZD-5Z9
+    responses:
+     200:
+      body:
+        application/json:
+          example: |
+            [{
+                    "name": "SPACE STATION",
+                    "startUTC": 1521368025,
+                    "endUTC": 1521368660
+                },
+                {
+                    "name": "NASA telescope",
+                    "startUTC": 1521368025,
+                    "endUTC": 1521368660
+                },
+                {
+                    "name": "CES secret satellite",
+                    "startUTC": 1521368025,
+                    "endUTC": 1521368660
+                }
+            ]
+     402:
+      description: it means that Spacescanner does not have data available in the cache, so it is required to provide client's API key from n2yo.com.
+                    Please, repeat the request with api_key parameter provided.
+      body:
+        application/json:
+          example: |
+            {"error": "api_key is required for current GEO position"}
+      400:
+        description: Any other error. For example, api_key provided is not valid.
+        body:
+          application/json:
+            example: |
+              {"error": "provided api_key is not valid"}
+
+
+
+
+
