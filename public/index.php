@@ -13,7 +13,7 @@ use Symfony\Component\Dotenv\Dotenv;
 require '../vendor/autoload.php';
 
 $container = new Container();
-$container->get('settings')->replace(['displayErrorDetails' => true]);
+// $container->get('settings')->replace(['displayErrorDetails' => true]); // dev mode
 $app       = new App($container);
 
 $env = new Dotenv();

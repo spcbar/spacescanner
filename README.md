@@ -1,3 +1,3 @@
 # Spacescanner Project - Space Bar Team
 
-to be continued
+just visit [http://spacebar.hurma.tv/](http://spacebar.hurma.tv/)
