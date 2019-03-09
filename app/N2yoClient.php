@@ -20,7 +20,7 @@ class N2yoClient
 
     public function __construct()
     {
-        $this->brightest_satellites = require_once(__DIR__ . '/static/brightest_satellites.php');
+        $this->brightest_satellites = include(__DIR__ . '/static/brightest_satellites.php');
         $this->client               = new Client([
                                                      'base_uri' => 'https://www.n2yo.com',
                                                  ]
@@ -41,8 +41,8 @@ class N2yoClient
         $days           = 10;
         $minimumSeconds = 300;
 
-     //   foreach (array_slice($this->brightest_satellites, 0, 5) as $satellite) // todo debug mode
-        foreach ($this->brightest_satellites as $satellite) // todo production mode
+       foreach (array_slice($this->brightest_satellites, 0, 5) as $satellite) // todo debug mode
+     //   foreach ($this->brightest_satellites as $satellite) // todo production mode
         {
             $uri         = "/rest/v1/satellite/visualpasses/{$satellite['id']}/{$location->getLat()}/{$location->getLong()}/$altitude/$days/$minimumSeconds?apiKey=$apiKey";
           //  echo "$uri \n";
@@ -62,7 +62,7 @@ class N2yoClient
                                                          /** @var $originalResponse Response */
                                                          $response = json_decode((string) $originalResponse->getBody(), true);
 
-                                                         echo "index $index done, name = {$response['info']['satname']} \n\n";
+                                                     //    echo "index $index done, name = {$response['info']['satname']} \n\n";
 
                                                          $maxTransactionsThisMinute = max($maxTransactionsThisMinute, $response['info']['transactionscount']);
 
@@ -73,7 +73,7 @@ class N2yoClient
                                                          foreach ($response['passes'] as $pass)
                                                          {
                                                              // These satellites (or objects) are normally brighter than magnitude 4.
-                                                             if ($pass['mag'] < 4)
+                                                             if ($pass['mag'] < 2) // pick up the brightest
                                                              {
                                                                  $combinedResults [] = new VisualPass(
                                                                      $response['info']['satid'],
@@ -97,7 +97,7 @@ class N2yoClient
         // force the pool of requests to complete
         $promise->wait();
 
-        echo "transactions = $maxTransactionsThisMinute \n";
+     //   echo "transactions = $maxTransactionsThisMinute \n";
 
         usort($combinedResults, function ($a1, $a2) {
 

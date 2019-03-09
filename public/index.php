@@ -38,15 +38,10 @@ $container[N2yoClient::class] = function ($container) {
 
 $app->get('/satellites', function (Request $request, Response $response) use ($container) {
 
-    $utc_time = $request->getQueryParam('utc_time');
+    $utc_time = $request->getQueryParam('utc_time', (new DateTime('now', new DateTimeZone('UTC'))));
 
-    if (! $utc_time)
-    {
-        $response = $response->withStatus(400);
-        $response->getBody()->write('required utc_time parameter missing');
+    $ip = $request->getQueryParam('forced_ip', $request->getServerParam('REMOTE_ADDR'));
 
-        return $response;
-    }
     $lat  = $request->getQueryParam('lat');
     $long = $request->getQueryParam('long');
 
@@ -57,16 +52,58 @@ $app->get('/satellites', function (Request $request, Response $response) use ($c
     {
         /** @var GeoLocator $geoLocator */
         $geoLocator = $container->get(GeoLocator::class);
-        $location   = $geoLocator->locate($request->getServerParam('REMOTE_ADDR'));
+        $location   = $geoLocator->locate($ip);
     }
+
+    $response = $response->withHeader('Content-Type', 'application/json');
+
+     /** @var Repository $repo */
+    $repo = $container->get(Repository::class);
+
+    // try cache
+    $cachedVisualPass = $repo->getClosestVisualPassByIP($utc_time, $ip);
+    if ($cachedVisualPass) {
+        $response->getBody()->write(json_encode($cachedVisualPass));
+        $response = $response->withHeader('X-VisualPass-Cache', 'hit');
+        $response = $response->withHeader('X-Cache-Method', 'by IP');
+
+        return $response;
+    }
+
+    $cachedVisualPass = $repo->getClosestVisualPassByRoundedLatLong($utc_time, $location->getRoundedLat(), $location->getRoundedLong());
+    if ($cachedVisualPass) {
+        $response->getBody()->write(json_encode($cachedVisualPass));
+        $response = $response->withHeader('X-VisualPass-Cache', 'hit');
+        $response = $response->withHeader('X-Cache-Method', 'by rounded Lat/Long');
+
+        return $response;
+    }
+
+    if ($location->getName())
+    {
+        $cachedVisualPass = $repo->getClosestVisualPassByCity($location->getName(), $ip);
+        if ($cachedVisualPass)
+        {
+            $response->getBody()->write(json_encode($cachedVisualPass));
+            $response = $response->withHeader('X-VisualPass-Cache', 'hit');
+            $response = $response->withHeader('X-Cache-Method', 'by city');
+
+            return $response;
+        }
+    }
+
+
+
 
     /** @var N2yoClient $client */
     $client = $container->get(N2yoClient::class);
-    echo json_encode($client->getVisualPasses($location, getenv('SYSTEM_API_KEY')));
 
+    $response = $response->withHeader('X-VisualPass-Cache', 'Miss');
+    $visualPasses = $client->getVisualPasses($location, getenv('SYSTEM_API_KEY'));
 
-    $response->getBody()->write("done <br>");
+    $repo->insertVisualPasses($visualPasses, $location, $ip);
 
+    $response->getBody()->write(json_encode($visualPasses[0]));
     return $response;
 }
 );

@@ -19,12 +19,12 @@ class Location
 
     public function getRoundedLat()
     {
-        return round($this->lat); // in this case, the exact and rounded positions are 2 hours by car maximum
+        return round($this->lat, 1); // in this case, the exact and rounded positions are 2 hours by car maximum
     }
 
     public function getRoundedLong()
     {
-        return round($this->long);
+        return round($this->long, 1);
     }
 
     /**

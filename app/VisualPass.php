@@ -37,6 +37,6 @@ class VisualPass implements JsonSerializable
             'end_utc' => $this->end_utc,
             'duration' => $this->duration,
             'magnitude' => $this->magnitude,
-        ]; // todo add extra info like date and period
+        ];
     }
 }

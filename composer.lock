@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "806cc474beedbabf15add9f954b3e097",
-    "content-hash": "0933f7ddd75b33bbd69b7aa7892bbad7",
+    "hash": "111f3640659ca0354acc7449acb77cf0",
+    "content-hash": "37b25f0f19fb90fdf7d8d450bfe5e7b9",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -479,26 +479,25 @@
         },
         {
             "name": "paragonie/easydb",
-            "version": "v2.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/easydb.git",
-                "reference": "f35bd24abb31fa5a42a18b82fc26122d7c2fe931"
+                "reference": "597c75c6c33f8836bf62e87dd33b4cf2d6da7f98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/easydb/zipball/f35bd24abb31fa5a42a18b82fc26122d7c2fe931",
-                "reference": "f35bd24abb31fa5a42a18b82fc26122d7c2fe931",
+                "url": "https://api.github.com/repos/paragonie/easydb/zipball/597c75c6c33f8836bf62e87dd33b4cf2d6da7f98",
+                "reference": "597c75c6c33f8836bf62e87dd33b4cf2d6da7f98",
                 "shasum": ""
             },
             "require": {
-                "ext-pdo": "*"
+                "ext-pdo": "*",
+                "php": "^5.5|^7"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5",
-                "spatie/7to5": "^1.0",
-                "squizlabs/php_codesniffer": "^2.7",
-                "vimeo/psalm": "^0|^1"
+                "phpunit/phpunit": "^4|^5",
+                "squizlabs/php_codesniffer": "^2.7"
             },
             "type": "library",
             "autoload": {
@@ -535,7 +534,7 @@
                 "security",
                 "sql"
             ],
-            "time": "2018-03-10 19:23:49"
+            "time": "2018-10-01 16:55:05"
         },
         {
             "name": "pimple/pimple",
