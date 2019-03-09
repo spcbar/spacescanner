@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Countdown</title>
+    <link rel="stylesheet" href="/assets/css/countdown.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="/assets/js/jquery.countdown.js"></script>
+    <script>
+        $(function () {
+
+
+            $.getJSON('http://spacebar.hurma.tv/satellites', function (data) {
+
+
+                $('#cd').countdown({
+                    startTime: data['formatted_countdown']
+                });
+
+                $('#name').html('name: ' + '<strong style="color: deepskyblue;">' + data['name'] + '</strong>');
+            });
+
+        });
+    </script>
+</head>
+<body class="blank">
+<div class="container">
+    <h1>Next satellite will be seen at your location in</h1>
+    <div class="cd-wrapper">
+        <div id="cd"></div>
+        <div class="d">
+            <div>Days</div>
+            <div>Hours</div>
+            <div>Minutes</div>
+            <div>Seconds</div>
+        </div>
+    </div>
+    <h1 style="margin-top: 1em;" id="name"></h1>
+</div>
+</body>
+</html>
