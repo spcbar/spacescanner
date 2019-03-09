@@ -38,7 +38,7 @@ $container[N2yoClient::class] = function ($container) {
 
 $app->get('/satellites', function (Request $request, Response $response) use ($container) {
 
-    $utc_time = $request->getQueryParam('utc_time', (new DateTime('now', new DateTimeZone('UTC'))));
+    $utc_time = $request->getQueryParam('utc_time', (new DateTime('now', new DateTimeZone('UTC')))->getTimestamp());
 
     $ip = $request->getQueryParam('forced_ip', $request->getServerParam('REMOTE_ADDR'));
 

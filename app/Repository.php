@@ -2,7 +2,6 @@
 
 namespace App;
 
-use function array_column;
 use ParagonIE\EasyDB\EasyDB;
 use ParagonIE\EasyDB\Factory;
 

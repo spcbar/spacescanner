@@ -41,8 +41,8 @@ class N2yoClient
         $days           = 10;
         $minimumSeconds = 300;
 
-       foreach (array_slice($this->brightest_satellites, 0, 5) as $satellite) // todo debug mode
-     //   foreach ($this->brightest_satellites as $satellite) // todo production mode
+     //  foreach (array_slice($this->brightest_satellites, 0, 5) as $satellite) // todo debug mode
+       foreach ($this->brightest_satellites as $satellite) // todo production mode
         {
             $uri         = "/rest/v1/satellite/visualpasses/{$satellite['id']}/{$location->getLat()}/{$location->getLong()}/$altitude/$days/$minimumSeconds?apiKey=$apiKey";
           //  echo "$uri \n";
