@@ -20,6 +20,8 @@ class VisualPass implements JsonSerializable
 
     public $magnitude;
 
+    private static $additionalInfo;
+
     public function __construct($id, $name, $start_utc, $end_utc, $duration, $magnitude)
     {
         $this->id        = $id;
@@ -28,6 +30,11 @@ class VisualPass implements JsonSerializable
         $this->end_utc   = $end_utc;
         $this->duration  = $duration;
         $this->magnitude = $magnitude;
+
+        if (!self::$additionalInfo)
+        {
+            self::$additionalInfo = include(__DIR__ . '/../app/static/brightest_satellites.php');
+        }
     }
 
     public function getFormattedTimeTillTheNextSatellite()
@@ -63,6 +70,9 @@ class VisualPass implements JsonSerializable
             'formatted_countdown' => $this->getFormattedTimeTillTheNextSatellite(),
             'duration'  => $this->duration,
             'magnitude' => $this->magnitude,
+            'launch_date' => self::$additionalInfo[$this->id]['launch_date'],
+            'launch_site' => str_replace(PHP_EOL, '', self::$additionalInfo[$this->id]['launch_site']),
+            'origin' => self::$additionalInfo[$this->id]['origin'],
         ];
     }
 }

@@ -23,6 +23,9 @@
                 });
 
                 $('#name').html('name: ' + '<strong style="color: deepskyblue;">' + data['name'] + '</strong>');
+                $('#date').html('When: ' + data['launch_date']);
+                $('#site').html('Where: ' + data['launch_site']);
+                $('#origin').html('Who: ' + data['origin']);
             });
 
         });
@@ -41,6 +44,9 @@
         </div>
     </div>
     <h1 style="margin-top: 1em;" id="name"></h1>
+    <p style="margin-top: 1em; text-align: left;" id="date"></p>
+    <p style="margin-top: 1em; text-align: left;" id="site"></p>
+    <p style="margin-top: 1em; text-align: left;" id="origin"></p>
     <div style="margin-top: 8em;">
     <!-- SnapWidget -->
 <iframe src="https://snapwidget.com/embed/670169" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:640px; height:285px"></iframe>
