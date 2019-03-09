@@ -1,0 +1,214 @@
+* {
+    outline: none;
+}
+html {
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+body {
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.3em;
+    background: #fff;
+    font-family: Arial;
+    text-align: center;
+}
+/*=====================================*/
+img {
+    border: none;
+    display: block;
+}
+a {
+    color: #008ace;
+    text-decoration: underline;
+}
+a:hover {
+    color: #ff0000;
+    text-decoration: none;
+}
+a.dotted {
+    text-decoration: none;
+    border-bottom: #008ace 1px dotted;
+}
+a.dotted:hover {
+    text-decoration: none;
+    border-bottom: none;
+}
+/*=====================================*/
+.left {
+    text-align: left;
+}
+.center {
+    text-align: center;
+}
+.right {
+    text-align: right;
+}
+.f-left {
+    float: left;
+}
+.f-right {
+    float: right;
+}
+.clear {
+    height: 0px;
+    clear: both;
+}
+/*=====================================*/
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 400;
+    margin: 1.5em 0 0.5em 0;
+    color: #333;
+    line-height: 1em;
+}
+h1 {
+    font-size: 2.4em;
+    margin-top: 0;
+}
+h2 {
+    font-size: 2.0em;
+
+}
+h3 {
+    font-size: 1.6em;
+}
+/*=====================================*/
+.container {
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: calc(100% - 62px) !important;
+    max-width: 978px;
+    padding: 30px;
+    border: #dadada 1px solid;
+}
+#filter-mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=85);
+    -moz-opacity: 0.85;
+    -khtml-opacity: 0.85;
+    opacity: 0.85;
+    display: none;
+}
+.black-mask {
+    background: #000;
+}
+.white-mask {
+    background: #fff;
+    box-shadow: 0 0 15px 0 #999;
+}
+/*=====================================*/
+#saved-title {
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    display: none;
+}
+/*=====================================*/
+.counters {
+    display: none;
+}
+/*=====================================*/
+body.blank {
+    background: #f5f7fa;
+}
+body.blank .container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+body.iframe .demo-context-block-01, body.iframe .demo-context-block-02 {
+    display: none;
+}
+.demo-context-block-01, .demo-context-block-02 {
+
+}
+.demo-context-block-01 {
+    margin: 0 0 30px 0;
+    padding: 0 0 30px 0;
+    border-bottom: #ccc 1px dotted;
+}
+.demo-context-block-02 {
+    margin: 30px 0 0 0;
+    padding: 30px 0 0 0;
+    border-top: #ccc 1px dotted;
+}
+#disqus_thread {
+    margin: 30px 0 0 0;
+    padding: 30px 0 0 0;
+    border-top: #ccc 1px dotted;
+}
+/*=====================================*/
+.table-container {
+    border-radius: 8px;
+    border: #c9e3f0 8px solid;
+    margin: 15px 0;
+}
+.cool-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+}
+.cool-table td, .cool-table th {
+    border: #dedede 1px solid;
+    text-align: center;
+    padding: 16px;
+    background-color: #fff;
+}
+.cool-table th {
+    font-size: 15px;
+    font-weight: 900;
+    color: #333;
+    padding: 20px 16px;
+    background-color: #dfedf4;
+    border: #fff 1px solid;
+}
+.cool-table tr td:first-child {
+    text-align: left;
+    border-left: #fff 1px solid;
+}
+.cool-table tr td:last-child {
+    border-right: #fff 1px solid;
+}
+.cool-table tr:nth-child(2n+1) td {
+    background: #eee;
+}
+/*=====================================*/
+.cd-wrapper {
+    display: inline-block;
+    margin: 0 auto;
+}
+.cntSeparator {
+    font-size: 50px;
+    line-height: 70px;
+    margin: 0 10px;
+}
+.cd-wrapper .d div {
+    float: left;
+    text-align: center;
+    width: 104px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 10px 0 0 36px;
+}
+.cd-wrapper .d div:first-child {
+    margin-left: 1px;
+}
+.clear {
+    clear: both;
+}
