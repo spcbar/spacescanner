@@ -24,7 +24,8 @@ class GeoLocator
     {
         $record = $this->reader->city($ip);
 
-        return new Location($record->location->latitude, $record->location->longitude);
+
+        return new Location($record->location->latitude, $record->location->longitude, $record->city->name);
 
     }
 }

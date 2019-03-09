@@ -7,6 +7,7 @@ class Location
     private $lat;
     private $long;
     private $alt;
+    private $name;
 
     /**
      * @return mixed
@@ -14,6 +15,16 @@ class Location
     public function getLat()
     {
         return $this->lat;
+    }
+
+    public function getRoundedLat()
+    {
+        return round($this->lat); // in this case, the exact and rounded positions are 2 hours by car maximum
+    }
+
+    public function getRoundedLong()
+    {
+        return round($this->long);
     }
 
     /**
@@ -32,15 +43,21 @@ class Location
         return $this->alt;
     }
 
-    public function __construct($lat, $long, $alt = 0)
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function __construct($lat, $long, $name = null, $alt = 0)
     {
         $this->lat = $lat;
         $this->long = $long;
+        $this->name = $name;
         $this->alt = $alt;
     }
 
     public function __toString()
     {
-        return "lat = {$this->lat}, long = {$this->long}";
+        return "lat = {$this->lat}, long = {$this->long}, name = {$this->name}";
     }
 }
