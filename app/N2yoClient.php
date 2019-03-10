@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use function json_encode;
 use SorryServiceNotAvailable;
 
 class N2yoClient
@@ -68,6 +69,16 @@ class N2yoClient
 
                                                          if ($maxTransactionsThisMinute > self::TRANSACTIONS_HARD_LIMIT) {
                                                              throw SorryServiceNotAvailable::becauseApiLimitReached($apiKey);
+                                                         }
+
+                                                         if ((int)$response['info']['passescount'] === 0)
+                                                         {
+                                                             return; // no passes for this satellite => skip it
+                                                         }
+
+                                                         if (!isset($response['passes'])) {
+                                                             // error from n2yo
+                                                             throw new \Exception("api error: " . json_encode($response));
                                                          }
 
                                                          foreach ($response['passes'] as $pass)

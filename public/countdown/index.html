@@ -23,9 +23,9 @@
                 });
 
                 $('#name').html('name: ' + '<strong style="color: deepskyblue;">' + data['name'] + '</strong>');
-                $('#date').html('When: ' + data['launch_date']);
-                $('#site').html('Where: ' + data['launch_site']);
-                $('#origin').html('Who: ' + data['origin']);
+                $('#date').html('Launched: ' + data['launch_date']);
+                $('#site').html('<span>  </span>' + data['launch_site']);
+                $('#origin').html('By: ' + data['origin']);
             });
 
         });
@@ -47,10 +47,7 @@
     <p style="margin-top: 1em; text-align: left;" id="date"></p>
     <p style="margin-top: 1em; text-align: left;" id="site"></p>
     <p style="margin-top: 1em; text-align: left;" id="origin"></p>
-    <div style="margin-top: 8em;">
-    <!-- SnapWidget -->
-<iframe src="https://snapwidget.com/embed/670169" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:640px; height:285px"></iframe>
-    </div>
+
 <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(52715473, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/52715473" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 </body>
 </html>
